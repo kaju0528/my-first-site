@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学問サキドリプログラム | 広島国際大学</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a2558;
+  --blue: #1a50a0;
+  --accent: #e8850a;
+  --accent-light: #f5a940;
+  --teal: #0e7d7d;
+  --teal-light: #e6f5f5;
+  --white: #ffffff;
+  --off-white: #f7f8fc;
+  --gray-light: #eef0f6;
+  --gray: #8899aa;
+  --text: #1a2340;
+  --text-muted: #5a6a80;
+  --border: #d8e2ef;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(10,37,88,.25);
+}
+.site-header .logo {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  text-decoration: none;
+}
+.site-header .logo-en {
+  font-size: 9px;
+  letter-spacing: .12em;
+  opacity: .7;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.site-header .logo-ja {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1.2;
+}
+.header-badge {
+  background: var(--accent);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a2558 0%, #1a50a0 45%, #0e7d7d 100%);
+}
+.hero-bg-shapes {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.hero-bg-shapes::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,133,10,.18) 0%, transparent 70%);
+  top: -100px; right: -100px;
+}
+.hero-bg-shapes::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,125,125,.25) 0%, transparent 70%);
+  bottom: -80px; left: 10%;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80') center/cover no-repeat;
+  opacity: .28;
+  mix-blend-mode: luminosity;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 32px 80px;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,133,10,.18);
+  border: 1px solid rgba(232,133,10,.4);
+  color: var(--accent-light);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 28px;
+  animation: fadeSlideUp .7s ease both;
+}
+.hero-tag::before { content: '●'; font-size: 6px; }
+.hero-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(38px, 7vw, 68px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: .03em;
+  margin-bottom: 18px;
+  animation: fadeSlideUp .7s .15s ease both;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--accent-light);
+  position: relative;
+}
+.hero-copy {
+  font-size: clamp(18px, 3.5vw, 26px);
+  font-weight: 300;
+  color: rgba(255,255,255,.9);
+  letter-spacing: .06em;
+  margin-bottom: 36px;
+  animation: fadeSlideUp .7s .25s ease both;
+}
+.hero-lead {
+  max-width: 640px;
+  margin: 0 auto 48px;
+  font-size: 15px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.9;
+  animation: fadeSlideUp .7s .35s ease both;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: .06em;
+  box-shadow: 0 8px 28px rgba(232,133,10,.45);
+  transition: transform .2s, box-shadow .2s;
+  animation: fadeSlideUp .7s .45s ease both;
+}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,133,10,.55); }
+.hero-cta svg { width: 18px; height: 18px; }
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,.45);
+  font-size: 11px;
+  letter-spacing: .1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: bounce 2s infinite;
+}
+.hero-scroll-hint::after {
+  content: '';
+  width: 1px; height: 32px;
+  background: rgba(255,255,255,.3);
+}
+
+/* ── SECTION BASE ── */
+section { padding: 80px 24px; }
+.section-inner { max-width: 960px; margin: 0 auto; }
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.section-title-accent {
+  color: var(--accent);
+}
+.section-lead {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 640px;
+  line-height: 1.9;
+  margin-bottom: 48px;
+}
+.divider {
+  width: 48px; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--teal));
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+/* ── ABOUT SECTION ── */
+.about-section { background: var(--off-white); }
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.about-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+}
+.about-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(10,37,88,.1); }
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+}
+.about-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--teal-light);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  font-size: 22px;
+}
+.about-card-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.about-card-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ── AUDIENCE SECTION ── */
+.audience-section { background: var(--white); }
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+@media (max-width: 680px) { .audience-grid { grid-template-columns: 1fr; } }
+
+.audience-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.audience-card-header {
+  padding: 28px 28px 24px;
+  position: relative;
+}
+.audience-card.students .audience-card-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+}
+.audience-card.parents .audience-card-header {
+  background: linear-gradient(135deg, var(--teal) 0%, #1aa0a0 100%);
+}
+.audience-card-emoji { font-size: 36px; margin-bottom: 12px; }
+.audience-card-heading {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.audience-card-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+  letter-spacing: .06em;
+}
+.audience-card-body { padding: 24px 28px; background: var(--white); }
+.audience-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.audience-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.audience-list li::before {
+  content: '✓';
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.students .audience-list li::before {
+  background: rgba(26,80,160,.12);
+  color: var(--blue);
+}
+.parents .audience-list li::before {
+  background: rgba(14,125,125,.12);
+  color: var(--teal);
+}
+
+/* ── FEATURES SECTION ── */
+.features-section { background: var(--navy); }
+.features-section .section-label { color: var(--accent-light); }
+.features-section .section-title { color: var(--white); }
+.features-section .section-lead { color: rgba(255,255,255,.65); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.feature-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: background .25s, transform .25s;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.feature-card:hover { background: rgba(255,255,255,.1); transform: translateY(-3px); }
+.feature-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+  display: block;
+}
+.feature-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.feature-text {
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.7;
+}
+
+/* ── MATERIALS SECTION ── */
+.materials-section { background: var(--gray-light); }
+.materials-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (max-width: 680px) { .materials-inner { grid-template-columns: 1fr; } }
+.materials-visual {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px;
+  border: 1px solid var(--border);
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(10,37,88,.06);
+}
+.materials-visual-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray);
+  letter-spacing: .1em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.material-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.material-item {
+  background: var(--off-white);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--navy);
+}
+.material-item-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--teal-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.materials-text .section-lead { margin-bottom: 24px; }
+.material-points { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.material-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.material-points li::before {
+  content: '◆';
+  color: var(--accent);
+  font-size: 10px;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+/* ── FLOW SECTION ── */
+.flow-section { background: var(--white); }
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+.flow-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 56px;
+}
+.flow-step-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900;
+  font-size: 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.flow-step:nth-child(1) .flow-step-num { background: var(--accent); color: var(--white); }
+.flow-step:nth-child(2) .flow-step-num { background: var(--blue); color: var(--white); }
+.flow-step:nth-child(3) .flow-step-num { background: var(--teal); color: var(--white); }
+.flow-step:nth-child(4) .flow-step-num,
+.flow-step:nth-child(5) .flow-step-num { background: var(--navy); color: var(--white); }
+.flow-step:nth-child(6) .flow-step-num { background: #7b4fa6; color: var(--white); }
+.flow-step:last-child .flow-step-num {
+  background: linear-gradient(135deg, var(--accent), var(--blue));
+  color: var(--white);
+  width: 56px; height: 56px;
+  font-size: 18px;
+  box-shadow: 0 6px 20px rgba(232,133,10,.35);
+}
+.flow-line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(to bottom, var(--border), var(--border));
+  margin: 0 auto;
+  min-height: 28px;
+}
+.flow-step:last-child .flow-line { display: none; }
+.flow-step-content {
+  padding: 10px 0 28px 20px;
+  flex: 1;
+}
+.flow-step-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.flow-step-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.flow-step-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.flow-step:last-child .flow-step-title {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+/* ── FAQ ── */
+.faq-section { background: var(--off-white); }
+.faq-list { display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin: 0 auto; }
+.faq-item {
+  background: var(--white);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.faq-question {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  list-style: none;
+  user-select: none;
+  transition: background .15s;
+}
+.faq-question:hover { background: var(--off-white); }
+.faq-q-badge {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--blue);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.faq-toggle {
+  margin-left: auto;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--gray-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  color: var(--gray);
+  flex-shrink: 0;
+  transition: transform .25s;
+}
+details[open] .faq-toggle { transform: rotate(45deg); }
+.faq-answer {
+  padding: 0 24px 20px 66px;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.faq-a-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  background: rgba(232,133,10,.12);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 900;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ── CONTACT ── */
+.contact-section { background: var(--navy); }
+.contact-section .section-title { color: var(--white); }
+.contact-section .section-lead { color: rgba(255,255,255,.65); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.contact-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  padding: 30px 28px;
+  transition: background .2s;
+}
+.contact-card:hover { background: rgba(255,255,255,.11); }
+.contact-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.contact-card:first-child .contact-card-tag { background: rgba(232,133,10,.22); color: var(--accent-light); }
+.contact-card:last-child .contact-card-tag { background: rgba(14,125,125,.25); color: #5ee0d4; }
+.contact-card-org {
+  font-size: 12px;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 4px;
+}
+.contact-card-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.contact-tel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+  font-family: 'DM Serif Display', serif;
+}
+.contact-tel-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.contact-hours {
+  font-size: 12px;
+  color: rgba(255,255,255,.5);
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  background: #060e1f;
+  padding: 30px 24px;
+  text-align: center;
+  color: rgba(255,255,255,.35);
+  font-size: 12px;
+  letter-spacing: .05em;
+  line-height: 1.9;
+}
+.site-footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+.footer-logo {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 15px;
+  color: rgba(255,255,255,.6);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  section { padding: 56px 20px; }
+  .hero-inner { padding: 60px 20px 70px; }
+  .about-cards { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.hero-title {
+  white-space: nowrap;
+  font-size: clamp(22px, 4.5vw, 52px);
+}
+.hero-title-sub {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(13px, 2vw, 18px);
+  font-weight: 400;
+  color: rgba(255,255,255,.75);
+  letter-spacing: .14em;
+  margin-top: 10px;
+  margin-bottom: 0;
+  white-space: nowrap;
+  animation: fadeSlideUp .7s .3s ease both;
+}
+.hero-copy {
+  margin-top: 24px;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="#" class="logo">
+    <span class="logo-en">Hiroshima International University</span>
+    <span class="logo-ja">広島国際大学</span>
+  </a>
+  <span class="header-badge">入学前準備教育</span>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-shapes"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-photo-overlay"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title">広国のサキドリ「学修支援」</h1>
+    <p class="hero-title-sub">ー学問サキドリプログラムー</p>
+    <br>
+    <p class="hero-copy">未来の専門職への第一歩を、入学前から。</p>
+    <p class="hero-lead">
+      健康・医療・福祉の総合分野で活躍するためには、専門知識だけでなく、<br>
+      自ら学び続ける姿勢が大切です。<br>
+      入学前の時間を有効に活用し、大学での学びへの期待を高めていきましょう。
+    </p>
+    <a href="#about" class="hero-cta">
+      プログラムの詳細を見る
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll-hint">SCROLL</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">About Program</p>
+      <div class="divider"></div>
+      <h2 class="section-title">学問サキドリプログラムとは</h2>
+      <p class="section-lead">入学前から大学での学びに触れることで、専門分野への理解を深め、充実した大学生活の<br>スタートを支援する入学前準備教育プログラムです。</p>
+    </div>
+    <div class="about-cards reveal">
+      <div class="about-card">
+        <div class="about-card-title">大学の学びへ<br>スムーズな接続</div>
+        <div class="about-card-text">高校までの学習から大学の専門教育へ、自然に橋渡しをするカリキュラムで構成されています。</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">専門分野への<br>興味・関心の向上</div>
+        <div class="about-card-text">健康・医療・福祉の総合分野の学びに早期から触れることで、入学前から専門性への意識が高まります。</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">主体的な学習習慣<br>の形成</div>
+        <div class="about-card-text">自分のペースで学ぶスタイルを通じて、大学での自律的な学び方を自然と身につけられます。</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">入学後の学修への<br>不安軽減</div>
+        <div class="about-card-text">高校までの科目の復習を行いながら、高校・大学・将来の学びの関連性が理解できます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience-section" id="students">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">For Students & Parents</p>
+      <div class="divider"></div>
+      <h2 class="section-title">受験生・保護者のみなさまへ</h2>
+      <p class="section-lead">入学予定のみなさんと、その保護者のみなさまに、プログラムの意義をご紹介します。</p>
+    </div>
+    <div class="audience-grid reveal">
+      <div class="audience-card students">
+        <div class="audience-card-header">
+          <div class="audience-card-heading">学生のみなさんへ</div>
+          <div class="audience-card-sub">For Students ── 入学前から未来をイメージしよう</div>
+        </div>
+        <div class="audience-card-body">
+          <ul class="audience-list">
+            <li>大学でどのようなことを学ぶのかを、入学前から具体的に知ることができます</li>
+            <li>専門分野への理解を深め、将来のビジョンをより明確にできます</li>
+            <li>大学で求められる学び方（自分で調べ、考える姿勢）に触れられます</li>
+            <li>入学後の授業や大学生活への不安が軽減され、自信を持ってスタートできます</li>
+          </ul>
+        </div>
+      </div>
+      <div class="audience-card parents">
+        <div class="audience-card-header">
+          <div class="audience-card-heading">保護者のみなさまへ</div>
+          <div class="audience-card-sub">For Parents ── 安心して入学の日を迎えるために</div>
+        </div>
+        <div class="audience-card-body">
+          <ul class="audience-list">
+            <li>入学前から学習習慣を維持できる環境が整っており、学びのブランクを防ぎます</li>
+            <li>大学で必要となる基礎知識を確認しながら進められる設計になっています</li>
+            <li>入学後の学修へ円滑に移行できるよう、取組状況から入学後も支援します</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Program Features</p>
+      <div class="divider"></div>
+      <h2 class="section-title">プログラムの特徴</h2>
+      <p class="section-lead">いつでも、どこでも、自分のペースで学習できる環境を用意しています。</p>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-title">自宅で学習できる</div>
+        <div class="feature-text">通学不要。自宅でいつでも学習可能。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">テキスト＋Web<br>で学ぶ</div>
+        <div class="feature-text">紙のテキストとオンライン課題を組み合わせた効果的な学習スタイル。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">マルチデバイス<br>対応</div>
+        <div class="feature-text">スマートフォン・タブレット・パソコン、どの端末からでも受講可能。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">主体的な<br>学ぶ姿勢</div>
+        <div class="feature-text">自分で計画を立て学習することで、大学に必要な主体的に学ぶ力が身につく。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">サポート体制<br>充実</div>
+        <div class="feature-text">取り組みサポートメルマガ、掲示板メッセージ、お電話フォロー等、充実したサポート体制。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="materials-section" id="materials">
+  <div class="section-inner">
+    <div class="materials-inner">
+      <div class="materials-visual reveal">
+        <div class="materials-visual-title">受講教材イメージ</div>
+        <div class="material-items">
+          <div class="material-item">
+            専門分野対応テキスト
+          </div>
+          <div class="material-item">
+            Web課題システム
+          </div>
+          <div class="material-item">
+            学部・学科別オリジナル問題
+          </div>
+          <div class="material-item">
+            大学の学びにつながる内容
+          </div>
+        </div>
+      </div>
+      <div class="materials-text reveal">
+        <p class="section-label">Learning Materials</p>
+        <div class="divider"></div>
+        <h2 class="section-title">受講教材について</h2>
+        <p class="section-lead">学部・学科ごとに専門分野に応じた教材を使用します。あなたが選んだ学びの道に合わせた内容で、入学準備を進められます。</p>
+        <ul class="material-points">
+          <li>専門分野に応じた教材を合格後にお届け</li>
+          <li>テキスト学習とWeb課題を組み合わせて実施</li>
+          <li>大学での学びにつながる内容で構成</li>
+        </ul>
+        <a href="https://joshoacjp-my.sharepoint.com/:b:/g/personal/j2023011_josho_ac_jp/IQDF8rnjPTioSZbm0VfTGeXnAS4uFbU_KVYs2dyHYsN_BAg?e=31Caf1" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; margin-top:20px; color:var(--navy); font-size:14px; font-weight:700; text-decoration:none; border-bottom:2px solid var(--navy); padding-bottom:2px; transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">学科別教材一覧はこちら <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow-section" id="flow">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:48px;">
+      <p class="section-label">How to Join</p>
+      <div class="divider" style="margin:0 auto 20px;"></div>
+      <h2 class="section-title">受講の流れ</h2>
+      <p class="section-lead" style="margin: 0 auto;">合格から入学まで、ステップに沿って安心して進められます。</p>
+      <a href="https://hiroko9-my.sharepoint.com/:b:/g/personal/hiu-k_invoice_ms_hirokoku-u_ac_jp/IQB9IEi8j08mQLne_BK5Rg4-AYJnSDiLu_Z_7A-wxPO_9HU?e=ESXqoT" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; margin-top:16px; color:var(--navy); font-size:14px; font-weight:700; text-decoration:none; border-bottom:2px solid var(--navy); padding-bottom:2px; transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">受講の流れ詳細はこちら <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+    </div>
+    <div class="flow-steps reveal">
+      <div class="flow-step">
+        <div class="flow-step-left">
+          <div class="flow-step-num">1</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-step-content">
+          <div class="flow-step-label">Step 01</div>
+          <div class="flow-step-title">教材の確認</div>
+          <div class="flow-step-desc">まずはQRコードを読み取り、自分が取り組む教材を確認しましょう。教材は入学する学部学科や受験した入試区分によって種類が異なります。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-left">
+          <div class="flow-step-num">2</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-step-content">
+          <div class="flow-step-label">Step 02</div>
+          <div class="flow-step-title">受講申し込み</div>
+          <div class="flow-step-desc">Webサイトで申込情報を入力後、支払い方法を選択してください。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-left">
+          <div class="flow-step-num">3</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-step-content">
+          <div class="flow-step-label">Step 03</div>
+          <div class="flow-step-title">教材の受取</div>
+          <div class="flow-step-desc">届いたら中身が揃っているか確認しましょう。テキスト・Web課題管理シート・学び方ガイド・ユニットマップ・学生生活サキドリBOOKが入っています。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-left">
+          <div class="flow-step-num">4</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-step-content">
+          <div class="flow-step-label">Step 04</div>
+          <div class="flow-step-title">受講スタート</div>
+          <div class="flow-step-desc">〈冊子〉のテキストで学び、〈Web〉の課題に取り組みます。提出期日を確認して早めにスタートしましょう。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-left">
+          <div class="flow-step-num">5</div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-step-content">
+          <div class="flow-step-label">Step 05</div>
+          <div class="flow-step-title">採点と振り返り</div>
+          <div class="flow-step-desc">Web課題に取り組むと、すぐに採点結果と解答解説が表示されます。正解した問題を確認し、間違えた問題を見直して学習の振り返りを行うことで、入学前にしっかり理解しておきましょう。</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-left">
+          <div class="flow-step-num" style="font-size:13px; width:56px; height:56px; font-size:18px; box-shadow: 0 6px 20px rgba(232,133,10,.35);">Goal</div>
+        </div>
+        <div class="flow-step-content">
+          <div class="flow-step-label">Goal</div>
+          <div class="flow-step-title">入学・学びのスタート！</div>
+          <div class="flow-step-desc">自信と期待を胸に、広島国際大学での新たな学びが始まります。</div>
+        </div>
+      </div>
+        </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:40px;">
+      <p class="section-label">FAQ</p>
+      <div class="divider" style="margin: 0 auto 20px;"></div>
+      <h2 class="section-title">よくある質問</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span class="faq-q-badge">Q</span>
+            受講料はかかりますか？
+            <span class="faq-toggle">＋</span>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-a-badge">A</span>
+            受講にあたって費用はかかりません。大学負担となります。
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span class="faq-q-badge">Q</span>
+            スマートフォンだけでも受講できますか？
+            <span class="faq-toggle">＋</span>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-a-badge">A</span>
+            はい、受講可能です。Web課題はスマートフォン・タブレット・パソコンのいずれからでも取り組むことができます。普段使いのスマートフォンでご利用いただけるよう設計されています。
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span class="faq-q-badge">Q</span>
+            教材はいつ届きますか？
+            <span class="faq-toggle">＋</span>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-a-badge">A</span>
+            合格後に入学手続きを済ませた方から、進研アドより受講案内が届きます。各自で申込をした後、学部・学科に対応した教材をご自宅にお届けします。詳しいスケジュールは受講案内をご確認ください。
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span class="faq-q-badge">Q</span>
+            受講期限はありますか？
+            <span class="faq-toggle">＋</span>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-a-badge">A</span>
+            受講期限については受講案内にてご確認ください。期間内の修了を目標としているので、自分のペースで計画的に進めていただけます。
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary class="faq-question">
+            <span class="faq-q-badge">Q</span>
+            困ったときの相談先はありますか？
+            <span class="faq-toggle">＋</span>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-a-badge">A</span>
+            本プログラムはベネッセグループ（株）進研アドに委託しています。プログラムに関するお問い合わせはページ下部の（株）進研アド 連絡先にお問い合わせください。
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:40px;">
+      <p class="section-label" style="color:var(--accent-light);">Contact</p>
+      <div class="divider" style="margin: 0 auto 20px;"></div>
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-lead" style="margin: 0 auto;">ご不明な点は以下連絡先にお問い合わせください。</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <span class="contact-card-tag">受講期間中はこちらの窓口にご連絡ください</span>
+        <div class="contact-card-name">（株）進研アド<br>学問サキドリ問い合わせセンター</div>
+        <div class="contact-tel">
+          <div class="contact-tel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.45 16l.47.92z"/></svg></div>
+          050-3085-4518
+        </div>
+        <div class="contact-tel">
+          <div class="contact-tel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          sakidori@ad-mediapartner.com
+        </div>
+        <div class="contact-hours">月曜日〜金曜日 9:00〜17:00<br>（土日祝日・年末年始 12/29〜1/3 を除く）</div>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-tag">プログラム全般に関するお問い合わせ</span>
+        <div class="contact-card-org">広島国際大学</div>
+        <div class="contact-card-name">教育・学生支援機構</div>
+        <div class="contact-tel">
+          <div class="contact-tel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          pre-entrance@ms.hirokoku-u.ac.jp
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-logo">広島国際大学</div>
+  <p>Hiroshima International University</p>
+  <p style="margin-top:8px;">© 2025 Hiroshima International University. All rights reserved.</p>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Smooth scroll for hero CTA
+document.querySelector('.hero-cta').addEventListener('click', e => {
+  e.preventDefault();
+  document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
